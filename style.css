@@ -1,0 +1,535 @@
+/* style.css
+  The final production-ready stylesheet.
+  (Re-themed to Red & Black)
+*/
+
+/* --- 1. Global & Utilities (Red/Black Theme) --- */
+:root {
+    --color-black: #000000;
+    --color-dark-bg: #111111;
+    --color-dark-card: #222222;
+    --color-dark-border: #333333;
+    --color-white: #ffffff;
+    --color-off-white: #f9f9f9;
+    --color-text-muted: #888888;
+    --color-accent-red: #d90429; /* Strong Red */
+    --color-accent-red-hover: #b20321; /* Darker Red */
+}
+
+/* ADDED: Smooth scroll for the anchor link */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: var(--color-dark-bg);
+    color: var(--color-off-white);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Accessibility: Skip Navigation Link */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem;
+    background: var(--color-black);
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+/* --- 2. Header & Navigation (Red/Black Theme) --- */
+.site-header {
+    background-color: var(--color-black);
+    border-bottom: 1px solid var(--color-dark-border);
+    padding: 1rem 0;
+    position: relative; /* To stay on top of the hero */
+    z-index: 10;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2.75rem;
+    display: flex;
+    align-items: center;
+}
+.site-logo .logo-img {
+    max-height: 100px; /* Control logo size */
+    margin-right: 0.75rem;
+}
+.site-logo span {
+    margin: 0;
+}
+
+.main-nav {
+    margin-left: auto;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 2rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--color-off-white);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.main-nav a:hover {
+    color: var(--color-accent-red); /* Red hover */
+}
+
+/* --- 3. Main Content: Hero Video BG --- */
+.hero-section {
+    position: relative; /* This is the anchor for the video */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0; /* Vertical spacing for the content */
+    overflow: hidden; /* Clips the video */
+}
+
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind everything */
+}
+.hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Covers the entire area */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: 1; /* On top of video, behind content */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* On top of the overlay */
+    width: 100%;
+}
+
+/* --- 4. Product Grid (On top of Video) --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem; 
+    align-items: start; 
+    max-width: 550px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- 5. Components (Red/Black Theme) --- */
+
+/* NEW: Wrapper for product links */
+.product-link-wrapper {
+    display: block; /* Makes the whole area clickable */
+    text-decoration: none;
+    color: inherit; /* Inherits text color */
+}
+
+/* Product Card Component */
+.product-card {
+    border: 1px solid var(--color-dark-border);
+    border-radius: 8px;
+    background-color: var(--color-dark-card);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-5px); /* Lifts the card */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+/* NEW: Wrapper for image and video */
+.card-image-wrapper {
+    position: relative; /* Crucial for layering video */
+    background-color: #f4f4f4;
+    aspect-ratio: 1 / 1;
+}
+
+.card-image-wrapper img,
+.card-image-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* NEW: Hide video by default */
+.card-image-wrapper video {
+    opacity: 0;
+}
+
+/* NEW: On hover, show video and hide image */
+.product-card:hover .card-image-wrapper video {
+    opacity: 1;
+}
+.product-card:hover .card-image-wrapper img {
+    opacity: 0;
+}
+
+
+.product-card .card-content {
+    padding: 1rem;
+    text-align: left; 
+}
+.product-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--color-white);
+}
+
+.product-price {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-accent-red); /* Red price */
+}
+
+/* Button Component */
+.hero-cta {
+    text-align: center;
+}
+
+.product-grid .hero-cta {
+    grid-column: 1 / -1; /* Spans from column 1 to the end */
+    padding: 1rem 0; /* Add space above/below button */
+}
+
+.cta-prompt {
+    color: var(--color-white);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+.cta-button {
+    padding: 0.85rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    
+    background-color: var(--color-accent-red); /* Red */
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    display: inline-block;
+    text-decoration: none;
+}
+.cta-button:hover {
+    background-color: var(--color-accent-red-hover); /* Darker Red */
+}
+
+/* NEW: Secondary button style */
+.cta-button.secondary {
+    background-color: var(--color-dark-card);
+    color: var(--color-accent-red);
+    border: 1px solid var(--color-accent-red);
+}
+.cta-button.secondary:hover {
+    background-color: var(--color-dark-border);
+}
+
+
+/* --- 5.5 "All Products" Section Styles --- */
+.all-products-section {
+    padding: 4rem 0;
+    background-color: var(--color-dark-bg); /* Match body bg */
+}
+
+.all-products-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the heading and grid */
+}
+
+.all-products-section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    color: var(--color-white);
+    margin: 0 0 2rem 0;
+    border-bottom: 2px solid var(--color-accent-red);
+    padding-bottom: 0.5rem;
+    display: inline-block; /* Makes border fit the text */
+}
+
+.product-grid-full {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* --- 5.7 "About Us" Section --- */
+.about-section {
+    padding: 4rem 0;
+    background-color: var(--color-black); /* Darker bg */
+    border-top: 1px solid var(--color-dark-border);
+}
+
+.about-section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    color: var(--color-white);
+    margin: 0 0 3rem 0;
+    border-bottom: 2px solid var(--color-accent-red);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.about-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-content {
+    display: flex;
+    align-items: center; /* Vertically center image and text */
+    gap: 3rem;
+}
+
+.about-image {
+    flex-basis: 40%; /* Image takes 40% width */
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.about-text {
+    flex-basis: 60%; /* Text takes 60% width */
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    color: var(--color-white);
+    margin-top: 0;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-off-white);
+}
+
+/* --- 5.9 NEW "Product Detail Page" Styles --- */
+.product-detail-page {
+    padding: 4rem 0;
+}
+
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+/* MODIFIED: Make this the relative container */
+.product-detail-image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-dark-card);
+    border-radius: 8px;
+    overflow: hidden; /* To keep video inside rounded corners */
+}
+
+/* NEW: Apply to both img and video */
+.product-detail-image img,
+.product-detail-image video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px; /* Redundant due to overflow, but good practice */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* NEW: Hide video by default */
+.product-detail-image video {
+    opacity: 0;
+}
+
+/* NEW: On hover, show video and hide image */
+.product-detail-image:hover video {
+    opacity: 1;
+}
+.product-detail-image:hover img {
+    opacity: 0;
+}
+
+
+.product-title {
+    font-size: 2.5rem;
+    color: var(--color-white);
+    margin: 0 0 1rem 0;
+}
+
+.product-price-detail {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent-red);
+    margin: 0 0 1.5rem 0;
+}
+
+.delivery-info {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+.delivery-info p {
+    margin: 0.5rem 0;
+}
+.delivery-info a {
+    color: var(--color-accent-red);
+    text-decoration: none;
+}
+.delivery-info a:hover {
+    text-decoration: underline;
+}
+
+/* Green "In Stock" text */
+.stock-status {
+    color: #28a745; 
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.product-description h3 {
+    font-size: 1.5rem;
+    color: var(--color-white);
+    border-bottom: 1px solid var(--color-dark-border);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+.product-description p,
+.product-description li {
+    color: var(--color-off-white);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+
+/* --- 6. Footer (Red/Black Theme) --- */
+.site-footer {
+    background-color: var(--color-black);
+    border-top: 1px solid var(--color-dark-border);
+    padding: 2.5rem 0;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+/* --- 7. Responsive (Basic) --- */
+@media (max-width: 992px) {
+    .product-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    /* NEW: Stack product detail page on tablet */
+    .product-detail-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .product-grid {
+        max-width: none; 
+        width: 90%; 
+    }
+}
+
+
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        width: 90%; 
+    }
+
+    .product-grid-full {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .main-nav {
+        margin-left: 0;
+    }
+
+    /* NEW: Stack buttons on product page */
+    .product-actions {
+        flex-direction: column;
+    }
+    .product-actions .cta-button {
+        width: 100%;
+        box-sizing: border-box; /* Ensure padding doesn't break layout */
+    }
+}

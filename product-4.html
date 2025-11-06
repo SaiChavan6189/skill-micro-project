@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>KickVerse - Xlows Cortado</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="site-logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="KickVerse Logo" class="logo-img">
+                    <span>KickVerse</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#all-products">Products</a></li>
+                    <li><a href="index.html#about-us">About us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main id="main-content" class="product-detail-page">
+        <div class="container">
+            <div class="product-detail-layout">
+                <div class="product-detail-image">
+                    <img src="cortado.jpg" alt="Product 4">
+                    <video playsinline muted loop poster="https://via.placeholder.com/600x600.png?text=Product+4">
+                        <source src="cortado.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+              
+                <div class="product-detail-info">
+                    
+                    <h1 class="product-title">Xlows Cortado</h1>
+                    
+                    <p class="product-price-detail">₹11,299</p>
+
+                
+                    <div class="delivery-info">
+                        <p class="stock-status">In Stock.</p>
+                        <p><strong>FREE Delivery</strong> by next Tuesday. Order within 10 hrs 30 mins.</p>
+                        <p>Sold by <a href="#">KickVerse</a> and Fulfilled by Us.</p>
+                    </div>
+                    
+                  
+                    <div class="product-actions">
+                        <button type="button" class="cta-button secondary">Add to Cart</button>
+                        <button type="button" class="cta-button">Buy Now</button>
+                    </div>
+
+                 
+                    <div class="product-description">
+                        <h3>Product Details</h3>
+                        <p>This is where the detailed description of the product would go. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <ul>
+                            <li>Feature 1: Premium materials</li>
+                            <li>Feature 2: Limited edition</li>
+                            <li>Feature 3: Includes original box</li>
+                            <li>Feature 4: 100% Authentic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+   
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 KickVerse. All rights reserved of this project to Sai and Rajas</p>
+        </div>
+    </footer>
+
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageContainer = document.querySelector('.product-detail-image');
+            const video = imageContainer.querySelector('video');
+
+            if (video) {
+                imageContainer.addEventListener('mouseenter', () => {
+                    video.play().catch(error => {
+                        console.log("Video play was prevented.");
+                    });
+                });
+
+                imageContainer.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0; 
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
